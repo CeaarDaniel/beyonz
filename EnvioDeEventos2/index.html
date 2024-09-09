@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Server-sent events demo</title>
+   <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+
+    <h1>¡Hola!</h1>
+    
+    <button onclick="askNotificationPermission()">ENVIAR NOTIFICACION</button>
+    <a href="mailto:">as</a>
+
+  <ul>
+  </ul>
+
+<script>
+  function askNotificationPermission() {
+  try {
+    var img = "./i1.png";
+    var text = '¡OYE! Tu tarea ahora está vencida.';
+
+    Notification.requestPermission().then();
+    var notification = new Notification("Lista de tareas", {
+      body: text,
+      icon: img,
+    });
+  } catch (e) {
+    return false;
+  }
+
+  return true;
+}
+
+  //evtSource.addEventListener("ping", function(e) {
+  //   var newElement = document.createElement("li");
+  //
+  //   var obj = JSON.parse(e.data);
+  //   newElement.innerHTML = "ping at " + obj.time;
+  //   eventList.appendChild(newElement);
+  // }, false);
+
+
+
+  if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/EnvioDeEventos/service-worker.js')
+      .then((registration) => {
+        console.log('Service Worker registered with scope:', registration.scope);
+      })
+      .catch((error) => {
+        console.log('Service Worker registration failed:', error);
+      });
+  });
+}
+</script>
+</body>
+</html>
