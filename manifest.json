@@ -2,18 +2,18 @@
     "name": "Mi Aplicación Web",
     "short_name": "MiApp",
     "description": "Una descripción breve de mi aplicación web.",
-    "start_url": "/EnvioDeEventos/index.html",
+    "start_url": "./index.html",
     "display": "standalone",
     "background_color": "#ecff33",
     "theme_color": "#021688b2",
     "icons": [
       {
-        "src": "./icon/S11.png",
+        "src": "./S11.png",
         "sizes": "192x192",
         "type": "image/png"
       },
       {
-        "src": "/icon/S11.png",
+        "src": "./S11.png",
         "sizes": "512x512",
         "type": "image/png"
       }
