@@ -11,28 +11,49 @@
     <h1>¡Hola!</h1>
     
     <button onclick="askNotificationPermission()">ENVIAR NOTIFICACION</button>
+    <button id="btnNotificacion" name="btnNotificacion">PERMISOS NOTIFICACION</button>
     <a href="mailto:">as</a>
 
   <ul>
   </ul>
 
 <script>
-  function askNotificationPermission() {
 
-     alert("Boton de notificacion presionado")
-  try {
-    var img = "./i1.png";
-    var text = '¡OYE! Tu tarea ahora está vencida.';
+     var btnNotificacion = document.getElementById('btnNotificacion');
+     if(btnNotificacion) btnNotificacion.addEventListener('click', permisosNotificacion);
 
-    Notification.requestPermission().then();
-    var notification = new Notification("Lista de tareas", {
-      body: text,
-      icon: img,
-    });
-  } catch (e) {
-    return false;
-  }
+   function permisosNotificacion(){
+    Notification.requestPermission().then( function () {
+        if ( Notification.permission === "denied" || Notification.permission === "default") {
+            btnNotificacion.classList.add("fa-bell-slash")
+            alert("Notificaciones deshabilitadas")
+          }
+        
+        else {
+            btnNotificacion.classList.remove("fa-bell-slash")
+            alert("Las notificaciones están habilitadas")
+          }
+      });
+}
 
+     function askNotificationPermission() {
+
+    alert("Boton de notificacion presionado")
+
+    if (Notification.permission === 'granted') {
+         try {
+                  var img = "./i1.png";
+                  var text = 'ESTE ES EL MENSAJE DE LA NOTIFICACION';
+                 new Notification("Solicitud de autos", {
+                     body: text,
+                     icon: img,
+                 });
+             } catch (error) {
+                     console.log(error);
+                 }
+     }
+ 
+     else console.log("Las notificaciones están habilitadas")
   return true;
 }
 
