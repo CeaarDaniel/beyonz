@@ -10,7 +10,7 @@
 
     <h1>¡Hola!</h1>
     
-    <button onclick="askNotificationPermission()">ENVIAR NOTIFICACION</button>
+     <button id="enviarntf" name="enviarntf" >ENVIAR NOTIFICACION</button>
     <button id="btnNotificacion" name="btnNotificacion">PERMISOS NOTIFICACION</button>
     <a href="mailto:">as</a>
 
@@ -72,7 +72,23 @@
     navigator.serviceWorker.register('./service-worker.js')
       .then((registration) => {
         console.log('Service Worker registered with scope:', registration.scope);
-      })
+         return navigator.serviceWorker.ready;
+      }).then(function(registration) {
+                console.log('Service Worker listo:', registration);
+
+                // Configurar el botón para mostrar una notificación
+                document.getElementById('enviarntf').addEventListener('click', function() {
+                    if (Notification.permission === 'granted') {
+                        // Enviar un mensaje al service worker para mostrar una notificación
+                        registration.active.postMessage({
+                            action: 'showNotification',
+                            title: 'Simple Title',
+                            body: 'Simple piece of body text.\nSecond line of body text :)'
+                        });
+                    } 
+                  }) 
+                } 
+      )
       .catch((error) => {
         console.log('Service Worker registration failed:', error);
       });
