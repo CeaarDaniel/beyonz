@@ -20,7 +20,7 @@ self.addEventListener('install', (event) => {
         const title = event.data.title;
         const options = {
             body: event.data.body,
-            icon: './Auto.png',
+            icon: './S11.png',
             badge: './S11.png' 
         };
         self.registration.showNotification(title, options);
