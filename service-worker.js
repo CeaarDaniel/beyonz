@@ -13,3 +13,16 @@ self.addEventListener('install', (event) => {
       })
     );
   });
+
+
+  self.addEventListener('message', function(event) {
+    if (event.data.action === 'showNotification') {
+        const title = event.data.title;
+        const options = {
+            body: event.data.body,
+            icon: './Auto.png',
+            badge: './S11.png' 
+        };
+        self.registration.showNotification(title, options);
+    }
+});
