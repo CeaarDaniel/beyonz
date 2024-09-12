@@ -26,12 +26,12 @@ self.addEventListener('install', (event) => {
                       {
                         action: 'yes',
                         type: 'button',
-                        title: '👍 ALLOW',
+                        title: '👍 AUTORIZAR',
                       },
                       {
                         action: 'no',
                         type: 'button',
-                        title: '👎 DENY',
+                        title: '👎 RECHAZAR',
                       },
                     ],
               vibrate: [
