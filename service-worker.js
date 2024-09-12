@@ -21,7 +21,23 @@ self.addEventListener('install', (event) => {
         const options = {
             body: event.data.body,
             icon: './S11.png',
-            badge: './S11.png' 
+            badge: './S11.png',
+            actions: [
+                      {
+                        action: 'yes',
+                        type: 'button',
+                        title: '👍 ALLOW',
+                      },
+                      {
+                        action: 'no',
+                        type: 'button',
+                        title: '👎 DENY',
+                      },
+                    ],
+              vibrate: [
+                          1000, 110, 500, 110, 450, 110, 200, 110, 170, 40, 450, 110, 200, 110, 170,
+                          40, 500,
+                       ],
         };
         self.registration.showNotification(title, options);
     }
